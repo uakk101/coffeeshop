@@ -1,0 +1,161 @@
+
+
+
+*,
+*::before,
+::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 12px;
+	font-family: "Inter", sans-serif;
+}
+
+/* Non-navbar specific stuff moved to bottom of file */
+
+.nav {
+	position: fixed;
+	width: 100vw;
+	display: grid;
+	align-items: center;
+	padding: 1.5rem 2rem;
+
+	/* Individual value for the menu icon, then auto size the rest */
+	grid-template-columns: 60px repeat(2, auto);
+	grid-template-rows: repeat(2, auto);
+
+	/* This is the layout for the navbar in expanded mobile mode */
+	grid-template-areas:
+		"collapser brand"
+		"collapsable collapsable";
+
+	/* border-bottom: 1px solid #0005; */
+}
+
+.nav__collapser {
+	grid-area: collapser;
+	width: 30px;
+}
+
+.nav__brand {
+	font-weight: bold;
+	font-size: 1.2rem;
+	grid-area: brand;
+}
+
+.nav__cta {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.nav__collapsable {
+	display: grid;
+	align-items: center;
+	gap: 1rem;
+	width: 100%;
+	grid-area: collapsable;
+
+	/* This is what hides the content */
+	overflow: hidden;
+	max-height: 0;
+
+	transition: padding 500ms ease, max-height 250ms ease;
+}
+
+.nav--expanded .nav__collapsable {
+	max-height: 500px; /* This is what shows the content */
+	margin-top: 1rem;
+	padding: 2rem 0;
+}
+
+/* Desktop mode styles */
+@media (min-width: 700px) {
+	.nav {
+		/* Layout for nav in desktop mode */
+		grid-template-columns: repeat(4, auto);
+		grid-template-areas: "brand . collapsable collapsable";
+	}
+
+	.nav__collapser {
+		display: none;
+	}
+
+	.nav__collapsable {
+		max-height: 500px;
+		display: flex;
+		justify-content: center;
+	}
+
+	.nav--expanded .nav__collapsable,
+	.nav__cta {
+		padding: 0;
+		margin: 0;
+	}
+
+	.nav__collapsable {
+		display: flex;
+		gap: 2rem;
+	}
+
+	.nav__cta {
+		margin-left: 1.5rem;
+	}
+}
+
+@media (min-width: 1000px) {
+	html {
+		font-size: 1.25rem;
+	}
+}
+
+a {
+    font-size: 14px;
+    font-weight: bold;
+	text-decoration: none;
+	color: inherit;
+}
+
+
+
+
+
+.button {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: black;
+  border-radius: 20px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 12px;
+  height: 40px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+/* .button:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}  */
